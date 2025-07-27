@@ -12,6 +12,7 @@ responses_data = load_json("bot.json")
 
 
 def get_responses(input_string):
+
     split_message = re.split(r'\s+|[,:?!.-]\s*' , input_string.lower())
     score_list = []
 
@@ -44,9 +45,12 @@ def get_responses(input_string):
     
     return random_responses.random_string()
 
-while True:
-    user_input = input("You: ")
-    print("Bot: ", get_responses(user_input))    
+if __name__ == "__main__":
+    while True:
+        user_input = input("You: ")
+        print("Bot:", get_responses(user_input))
+
+    
 
 
 
