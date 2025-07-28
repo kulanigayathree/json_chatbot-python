@@ -1,27 +1,47 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #001427; /* Dark background */
+    color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .chat-container {
-    width: 500px;
+    width: 700px;
     margin: 50px auto;
-    background-color: white;
-    padding: 20px;
+    background-color: #1e1e2f00; /* Dark chat box */
+    padding: 32px 36px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.301);
+    z-index: 1;
+    position: relative;
 }
 
-h2 {
+.chat-title {
     text-align: center;
+    color: #fca311;
+    font-size: 3rem;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    animation: fadeInScale 1s ease;
 }
 
 .chat-box {
     height: 400px;
     overflow-y: auto;
-    border: 1px solid #ccc;
+    border: 1px solid #708d81;
     padding: 10px;
     margin-bottom: 15px;
+    background-color: #0b1b2a;
+    border-radius: 5px;
 }
 
 .user, .bot {
@@ -31,13 +51,14 @@ h2 {
 }
 
 .user {
-    background-color: #d1e7dd;
+    background-color: #3c6e71;
     text-align: right;
 }
 
 .bot {
-    background-color: #f8d7da;
+    background-color: #880d1e;
     text-align: left;
+    color: white;
 }
 
 .input-container {
@@ -49,17 +70,55 @@ input {
     flex-grow: 1;
     padding: 10px;
     font-size: 16px;
+    border: none;
+    border-radius: 5px;
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4caf50;
-    color: white;
+    font-weight: bold;
+    background-color: #fca311;
+    color: #001427;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #ffd87c;
+}
+
+/* Star animation */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: fall linear infinite;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
