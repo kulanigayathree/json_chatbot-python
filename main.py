@@ -1,23 +1,21 @@
-from flask import Flask, render_template, request, jsonify
 import json
 import re
 import random_responses
 
-# Initialize Flask app
-app = Flask(__name__)
-
-# Load bot responses
 def load_json(file):
     with open(file) as bot_responses:
         print(f"Loaded '{file}' successfully!")
         return json.load(bot_responses)
+    
 
 responses_data = load_json("bot.json")
 
-# Chatbot logic
+
 def get_responses(input_string):
-    split_message = re.split(r'\s+|[,:?!.-]\s*', input_string.lower())
+
+    split_message = re.split(r'\s+|[,:?!.-]\s*' , input_string.lower())
     score_list = []
+
 
     for response in responses_data:
         response_score = 0
@@ -44,20 +42,15 @@ def get_responses(input_string):
 
     if best_response != 0:
         return responses_data[response_index]["bot_response"]
-
+    
     return random_responses.random_string()
 
-# Routes
-@app.route('/')
-def index():
-    return render_template('index.html')  # this should be in your /templates folder
+if __name__ == "__main__":
+    while True:
+        user_input = input("You: ")
+        print("Bot:", get_responses(user_input))
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_input = request.json.get('message')
-    reply = get_responses(user_input)
-    return jsonify({'reply': reply})
+    
 
-# Run app
-if __name__ == '__main__':
-    app.run()
+
+
